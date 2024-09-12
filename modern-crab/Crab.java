@@ -15,12 +15,35 @@ public class Crab extends Actor
      */
     public void act()
     {
+        movingandturning();
+        eat();
+    }
+
+    /**
+     * Act - do whatever the Crab wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void movingandturning()
+    {
         move(4);
         if (Greenfoot.isKeyDown("left")) {
             turn(-3);
         }
         if (Greenfoot.isKeyDown("right")) {
             turn(3);
+        }
+    }
+
+    /**
+     * Act - do whatever the Crab wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void eat()
+    {
+        Actor worm = getOneIntersectingObject(Worm.class);
+        if (worm != null) {
+            World world = getWorld();
+            world.removeObject(worm);
+            Greenfoot.playSound("Tuco.wav");
+            Greenfoot.playSound("Godrick.wav");
         }
     }
 }
